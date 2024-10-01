@@ -1818,6 +1818,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHealth: {fileID: 1299572197}
   enemy: {fileID: 114491779595983746, guid: 4e3b7f611582d4dc7a9dd318242ed5e3, type: 3}
+  enemyStartingHealth: 100
   spawnTime: 3
   spawnPoints:
   - {fileID: 1456155940}
@@ -1851,6 +1852,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHealth: {fileID: 1299572197}
   enemy: {fileID: 114153904350160260, guid: ebed7a3ef4be5458fb88a3c3a689c566, type: 3}
+  enemyStartingHealth: 300
   spawnTime: 10
   spawnPoints:
   - {fileID: 694235421}
@@ -1869,6 +1871,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHealth: {fileID: 1299572197}
   enemy: {fileID: 114858573952562612, guid: 78e1368557eab4d62a5487e98c1b5c5f, type: 3}
+  enemyStartingHealth: 100
   spawnTime: 3
   spawnPoints:
   - {fileID: 1084502847}

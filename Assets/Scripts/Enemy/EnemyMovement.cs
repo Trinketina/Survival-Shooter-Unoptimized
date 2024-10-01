@@ -5,6 +5,9 @@ using UnityEngine.AI;
 public class EnemyMovement : MonoBehaviour
 {
     Transform player;
+    
+    [SerializeField] EnemyData data;
+
     PlayerHealth playerHealth;
     EnemyHealth health;
     NavMeshAgent agent;
@@ -14,6 +17,7 @@ public class EnemyMovement : MonoBehaviour
         player = FindObjectOfType<PlayerMovement>().transform;
         playerHealth = player.GetComponent<PlayerHealth>();
         health = GetComponent<EnemyHealth>();
+
         agent = GetComponent<NavMeshAgent>();
     }
 

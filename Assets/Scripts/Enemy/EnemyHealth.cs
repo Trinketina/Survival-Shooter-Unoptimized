@@ -4,16 +4,21 @@ using UnityEngine.Pool;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public int startingHealth = 100;
+    //public int startingHealth = 100;
+
     public int currentHealth;
-    public float sinkSpeed = 2.5f;
+
+    /*public float sinkSpeed = 2.5f;
     public int scoreValue = 10;
     public AudioClip deathClip;
-    public AudioClip hurtClip;
+    public AudioClip hurtClip;*/
+
+    [SerializeField] EnemyData data;    
+    
 
 
     Animator anim;
-    int id_dead = Animator.StringToHash("Dead");
+    //int id_dead = Animator.StringToHash("Dead");
 
     AudioSource enemyAudio;
     ParticleSystem hitParticles;
@@ -31,23 +36,23 @@ public class EnemyHealth : MonoBehaviour
         hitParticles = GetComponentInChildren <ParticleSystem> ();
         capsuleCollider = GetComponent <CapsuleCollider> ();
 
-        //currentHealth = startingHealth;
+        currentHealth = data.startingHealth;
     }
     private void OnEnable()
     {
-        currentHealth = startingHealth;
+        currentHealth = data.startingHealth;
         isDead = false;
         isSinking = false;
         capsuleCollider.isTrigger = false;
 
-        enemyAudio.clip = hurtClip;
+        enemyAudio.clip = data.hurtClip;
     }
 
     void Update ()
     {
         if(isSinking)
         {
-            transform.Translate (-Vector3.up * sinkSpeed * Time.deltaTime);
+            transform.Translate (-Vector3.up * data.sinkSpeed * Time.deltaTime);
         }
     }
 
@@ -77,9 +82,9 @@ public class EnemyHealth : MonoBehaviour
 
         capsuleCollider.isTrigger = true;
 
-        anim.SetTrigger (id_dead);
+        anim.SetTrigger (data.id_dead);
 
-        enemyAudio.clip = deathClip;
+        enemyAudio.clip = data.deathClip;
         enemyAudio.Play ();
     }
 
@@ -89,7 +94,7 @@ public class EnemyHealth : MonoBehaviour
         GetComponent <UnityEngine.AI.NavMeshAgent> ().enabled = false;
         GetComponent <Rigidbody> ().isKinematic = true;
         isSinking = true;
-        ScoreManager.score += scoreValue;
+        ScoreManager.score += data.scoreValue;
         //Destroy (gameObject, 2f);
 
         StartCoroutine(ReleaseEnemy());
