@@ -8,6 +8,8 @@ public class EnemyAttack : MonoBehaviour
 
 
     Animator anim;
+    int id_playerDead = Animator.StringToHash("PlayerDead");
+
     GameObject player;
     PlayerHealth playerHealth;
     EnemyHealth enemyHealth;
@@ -53,7 +55,7 @@ public class EnemyAttack : MonoBehaviour
 
         if(playerHealth.currentHealth <= 0)
         {
-            anim.SetTrigger ("PlayerDead");
+            anim.SetTrigger (id_playerDead);
         }
     }
 

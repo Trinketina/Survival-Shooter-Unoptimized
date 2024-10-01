@@ -10,6 +10,8 @@ public class EnemyHealth : MonoBehaviour
 
 
     Animator anim;
+    int id_dead = Animator.StringToHash("Dead");
+
     AudioSource enemyAudio;
     ParticleSystem hitParticles;
     CapsuleCollider capsuleCollider;
@@ -62,7 +64,7 @@ public class EnemyHealth : MonoBehaviour
 
         capsuleCollider.isTrigger = true;
 
-        anim.SetTrigger ("Dead");
+        anim.SetTrigger (id_dead);
 
         enemyAudio.clip = deathClip;
         enemyAudio.Play ();

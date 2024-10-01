@@ -16,6 +16,8 @@ public class PlayerHealth : MonoBehaviour
 
 
     Animator anim;
+    int id_die = Animator.StringToHash("Die");
+
     AudioSource playerAudio;
     PlayerMovement playerMovement;
     PlayerShooting playerShooting;
@@ -70,7 +72,7 @@ public class PlayerHealth : MonoBehaviour
 
         playerShooting.DisableEffects ();
 
-        anim.SetTrigger ("Die");
+        anim.SetTrigger (id_die);
 
         playerAudio.clip = deathClip;
         playerAudio.Play ();

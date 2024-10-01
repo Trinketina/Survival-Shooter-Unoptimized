@@ -7,7 +7,10 @@ public class PlayerMovement : MonoBehaviour
 
 	private Vector3 movement;
 	private Vector2 moveInput;
+
 	private Animator anim;
+	private int id_walking = Animator.StringToHash("IsWalking");
+
 	private Rigidbody playerRigidbody;
 	private int floorMask;
 	private float camRayLength = 100f;
@@ -66,6 +69,6 @@ public class PlayerMovement : MonoBehaviour
 	{
 		bool walking = h != 0f || v != 0f;
 
-		anim.SetBool("IsWalking", walking);
+		anim.SetBool(id_walking, walking);
 	}
 }
