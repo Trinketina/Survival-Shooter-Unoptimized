@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerShooting : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class PlayerShooting : MonoBehaviour
     Light gunLight;
     float effectsDisplayTime = 0.2f;
 
+    bool firing = false;
 
     void Awake ()
     {
@@ -25,6 +27,9 @@ public class PlayerShooting : MonoBehaviour
         gunLine = GetComponent <LineRenderer> ();
         gunAudio = GetComponent<AudioSource> ();
         gunLight = GetComponent<Light> ();
+
+        StaticInputMap.Input.Player.Shoot.started += Firing;
+        StaticInputMap.Input.Player.Shoot.canceled += Firing;
     }
 
 
@@ -32,7 +37,7 @@ public class PlayerShooting : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-		if(Input.GetButton ("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0)
+		if(firing && timer >= timeBetweenBullets && Time.timeScale != 0)
         {
             Shoot ();
         }
@@ -81,5 +86,13 @@ public class PlayerShooting : MonoBehaviour
         {
             gunLine.SetPosition (1, shootRay.origin + shootRay.direction * range);
         }
+    }
+
+    public void Firing(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started)
+            firing = true;
+        else if (ctx.canceled)
+            firing = false;
     }
 }

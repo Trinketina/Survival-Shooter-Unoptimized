@@ -1,25 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class PauseHandler : MonoBehaviour
 {
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        if(Input.GetButtonDown("Pause"))
+        StaticInputMap.Input.Player.Pause.performed += HandlePause;
+    }
+
+    public void HandlePause(InputAction.CallbackContext ctx)
+    {
+        // if pause menu is open, pressing pause button means we want to unpause
+        if (SceneManager.GetSceneByName("Pause").isLoaded)
         {
-            // if pause menu is open, pressing pause button means we want to unpause
-            if(SceneManager.GetSceneByName("Pause").isLoaded)
-            {
-                UnpauseGame();
-            }
-            // if pause menu is not open, pressing pause button means we want to pause
-            else
-            {
-                PauseGame();
-            }
+            UnpauseGame();
+        }
+        // if pause menu is not open, pressing pause button means we want to pause
+        else
+        {
+            PauseGame();
         }
     }
 

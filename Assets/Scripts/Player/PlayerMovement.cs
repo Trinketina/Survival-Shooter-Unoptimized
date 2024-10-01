@@ -1,17 +1,25 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
 	public float speed = 6f;
 
 	private Vector3 movement;
+	private Vector2 moveInput;
 	private Animator anim;
 	private Rigidbody playerRigidbody;
 	private int floorMask;
 	private float camRayLength = 100f;
 
+
+
 	void Awake()
 	{
+		StaticInputMap.Input.Player.Enable();
+		StaticInputMap.Input.Player.Movement.performed += MoveInput;
+		StaticInputMap.Input.Player.Movement.canceled += MoveInput;
+
 		floorMask = LayerMask.GetMask("Floor");
 		anim = GetComponent<Animator>();
 		playerRigidbody = GetComponent<Rigidbody>();
@@ -19,12 +27,9 @@ public class PlayerMovement : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		float h = Input.GetAxisRaw("Horizontal");
-		float v = Input.GetAxisRaw("Vertical");
-
-		Move(h, v);
+		Move(moveInput.x, moveInput.y);
 		Turning();
-		Animating(h, v);
+		Animating(moveInput.x, moveInput.y);
 	}
 
 	void Move(float h, float v)
@@ -33,6 +38,14 @@ public class PlayerMovement : MonoBehaviour
 		movement = movement.normalized * speed * Time.deltaTime;
 
 		playerRigidbody.MovePosition(transform.position + movement);
+	}
+
+	void MoveInput(InputAction.CallbackContext ctx)
+	{
+		moveInput = ctx.ReadValue<Vector2>();
+
+		if (ctx.canceled)
+			moveInput = Vector2.zero;
 	}
 
 	void Turning()
