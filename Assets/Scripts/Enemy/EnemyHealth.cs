@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.Pool;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -7,6 +9,7 @@ public class EnemyHealth : MonoBehaviour
     public float sinkSpeed = 2.5f;
     public int scoreValue = 10;
     public AudioClip deathClip;
+    public AudioClip hurtClip;
 
 
     Animator anim;
@@ -18,17 +21,27 @@ public class EnemyHealth : MonoBehaviour
     bool isDead;
     bool isSinking;
 
+    ObjectPool<EnemyHealth> pool;
 
-    void Awake ()
+
+    void Awake()
     {
         anim = GetComponent <Animator> ();
         enemyAudio = GetComponent <AudioSource> ();
         hitParticles = GetComponentInChildren <ParticleSystem> ();
         capsuleCollider = GetComponent <CapsuleCollider> ();
 
-        currentHealth = startingHealth;
+        //currentHealth = startingHealth;
     }
+    private void OnEnable()
+    {
+        currentHealth = startingHealth;
+        isDead = false;
+        isSinking = false;
+        capsuleCollider.isTrigger = false;
 
+        enemyAudio.clip = hurtClip;
+    }
 
     void Update ()
     {
@@ -77,6 +90,20 @@ public class EnemyHealth : MonoBehaviour
         GetComponent <Rigidbody> ().isKinematic = true;
         isSinking = true;
         ScoreManager.score += scoreValue;
-        Destroy (gameObject, 2f);
+        //Destroy (gameObject, 2f);
+
+        StartCoroutine(ReleaseEnemy());
+    }
+
+    IEnumerator ReleaseEnemy()
+    {
+        yield return new WaitForSeconds(2);
+
+        pool.Release(this);
+    }
+
+    public void SetPool(ObjectPool<EnemyHealth> _pool)
+    {
+        pool = _pool;
     }
 }

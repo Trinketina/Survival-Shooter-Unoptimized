@@ -9,14 +9,17 @@ public class EnemyMovement : MonoBehaviour
     EnemyHealth health;
     NavMeshAgent agent;
 
-    bool initialized = false;
-
     private void Awake()
     {
         player = FindObjectOfType<PlayerMovement>().transform;
         playerHealth = player.GetComponent<PlayerHealth>();
         health = GetComponent<EnemyHealth>();
         agent = GetComponent<NavMeshAgent>();
+    }
+
+    private void OnEnable()
+    {
+        agent.enabled = true;
     }
 
     void Update ()
