@@ -25,7 +25,6 @@ public class EnemyManager : MonoBehaviour
     {
         while (playerHealth.currentHealth > 0f)
         {
-            Debug.Log("spawn");
             pool.Get();
 
             yield return new WaitForSeconds(spawnTime);

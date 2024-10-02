@@ -27,7 +27,6 @@ public class GameOverManager : MonoBehaviour
 			restartTimer += Time.deltaTime;
 
 			if (restartTimer >= restartDelay) {
-				//Application.LoadLevel(Application.loadedLevel);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 			}
         }

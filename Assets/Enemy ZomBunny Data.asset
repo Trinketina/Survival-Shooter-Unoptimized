@@ -15,7 +15,7 @@ MonoBehaviour:
   <timeBetweenAttacks>k__BackingField: 0.5
   <attackDamage>k__BackingField: 10
   <sinkSpeed>k__BackingField: 2.5
-  <scoreValue>k__BackingField: 10
+  <scoreValue>k__BackingField: 15
   <startingHealth>k__BackingField: 100
   deathClip: {fileID: 8300000, guid: 1d3bfb9269f136947bf8ac164cace1ff, type: 3}
   hurtClip: {fileID: 8300000, guid: 02e6208ec76314158a9f548f51fe9f11, type: 3}

@@ -367,7 +367,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86e378bc199fbd343bceabbd3a16d73e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 2045715841}
 --- !u!4 &339976524
 Transform:
   m_ObjectHideFlags: 0
@@ -1087,6 +1086,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1152887603}
+  - component: {fileID: 1152887604}
   m_Layer: 5
   m_Name: HealthUI
   m_TagString: Untagged
@@ -1115,6 +1115,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 75, y: 60}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1152887604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152887602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d1a0f93fe804974990940bf4d5410eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1299572197}
+  healthSlider: {fileID: 604563092}
+  damageImage: {fileID: 152261544}
+  flashColour: {r: 1, g: 0, b: 0, a: 0.1}
+  flashSpeed: 5
 --- !u!1001 &1212569819
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1627,6 +1644,7 @@ GameObject:
   - component: {fileID: 2045715842}
   - component: {fileID: 2045715841}
   - component: {fileID: 2045715843}
+  - component: {fileID: 2045715844}
   m_Layer: 5
   m_Name: ScoreText
   m_TagString: Untagged
@@ -1710,6 +1728,19 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
+--- !u!114 &2045715844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045715839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3741f8d26c1dde941b7365fb611c9887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 2045715841}
 --- !u!1 &2073888668
 GameObject:
   m_ObjectHideFlags: 0
@@ -1818,7 +1849,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHealth: {fileID: 1299572197}
   enemy: {fileID: 114491779595983746, guid: 4e3b7f611582d4dc7a9dd318242ed5e3, type: 3}
-  enemyStartingHealth: 100
   spawnTime: 3
   spawnPoints:
   - {fileID: 1456155940}
@@ -1852,7 +1882,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHealth: {fileID: 1299572197}
   enemy: {fileID: 114153904350160260, guid: ebed7a3ef4be5458fb88a3c3a689c566, type: 3}
-  enemyStartingHealth: 300
   spawnTime: 10
   spawnPoints:
   - {fileID: 694235421}
@@ -1871,7 +1900,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHealth: {fileID: 1299572197}
   enemy: {fileID: 114858573952562612, guid: 78e1368557eab4d62a5487e98c1b5c5f, type: 3}
-  enemyStartingHealth: 100
   spawnTime: 3
   spawnPoints:
   - {fileID: 1084502847}
